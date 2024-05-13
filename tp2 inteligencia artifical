@@ -1,15 +1,13 @@
 1.    Implementar un proceso de búsqueda exhaustiva. Describir sus características, las ventajas y limitaciones frente al problema abordado y presentar un ejemplo.
 
 
-from collections import deque
-
-# Función para realizar la búsqueda en anchura (BFS)
-def bfs(inicial, objetivo, sucesores):
-    frontera = deque([inicial])
+# Función para realizar la búsqueda en profundidad (DFS)
+def dfs(inicial, objetivo, sucesores):
+    frontera = [inicial]
     visitados = set()
 
     while frontera:
-        nodo_actual = frontera.popleft()
+        nodo_actual = frontera.pop()
         if nodo_actual == objetivo:
             return nodo_actual
         
@@ -33,8 +31,8 @@ def generar_sucesores(nodo):
 nodo_inicial = 1
 nodo_objetivo = 10
 
-# Realizamos la búsqueda en anchura
-solucion = bfs(nodo_inicial, nodo_objetivo, generar_sucesores)
+# Realizamos la búsqueda en profundidad
+solucion = dfs(nodo_inicial, nodo_objetivo, generar_sucesores)
 
 # Imprimimos la solución
 if solucion:
@@ -90,5 +88,6 @@ if solucion:
     print("Se encontró la solución:", solucion)
 else:
     print("No se encontró solución.")
+
 
 
