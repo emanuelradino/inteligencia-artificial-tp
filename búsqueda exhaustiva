@@ -1,0 +1,38 @@
+# Función para realizar la búsqueda en profundidad (DFS)
+def dfs(inicial, objetivo, sucesores):
+    frontera = [inicial]
+    visitados = set()
+
+    while frontera:
+        nodo_actual = frontera.pop()
+        if nodo_actual == objetivo:
+            return nodo_actual
+        
+        visitados.add(nodo_actual)
+        
+        for sucesor in sucesores(nodo_actual):
+            if sucesor not in visitados and sucesor not in frontera:
+                frontera.append(sucesor)
+    
+    return None
+
+# Ejemplo de implementación
+# Definimos la función para generar los sucesores de un nodo
+def generar_sucesores(nodo):
+    sucesores = []
+    for i in range(nodo + 1, nodo + 4):
+        sucesores.append(i)
+    return sucesores
+
+# Definimos el nodo inicial y el nodo objetivo
+nodo_inicial = 1
+nodo_objetivo = 10
+
+# Realizamos la búsqueda en profundidad
+solucion = dfs(nodo_inicial, nodo_objetivo, generar_sucesores)
+
+# Imprimimos la solución
+if solucion:
+    print("Se encontró la solución:", solucion)
+else:
+    print("No se encontró solución.")
